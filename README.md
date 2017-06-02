@@ -110,7 +110,7 @@ Note: Camlistore can fail to build inside this container (some of the asm bits a
 
 Permanently spinny disks are annoying. Make all /dev/sd stuff spin down through udev (h/t: https://wiki.archlinux.org/index.php/hdparm#Persistent_configuration_using_udev_rule)
 
-    echo 'ACTION=="add|change", KERNEL=="sd[b-z]", ATTR{queue/rotational}=="1", RUN+="/usr/bin/hdparm -B 127 -S 12 /dev/%k"' | sudo tee -a /etc/udev/rules.d/50-hdparm.rules
+    echo 'ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="/usr/bin/hdparm -B 127 -S 12 /dev/%k"' | sudo tee -a /etc/udev/rules.d/50-hdparm.rules
 
 Jumbo frames (for networks which support GigE) -- this works around stock dhcp cfg overriding MTU too:
 
