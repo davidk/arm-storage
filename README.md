@@ -14,7 +14,7 @@ Bits for setting up Minio/Camlistore on an XU4(Q) using Docker containers.
 
 ### Installing docker
 
-    apt-get install docker.io
+    sudo apt-get install docker.io -y
     # Log in/out after running this to make the permissions effective
     sudo usermod -aG docker odroid
 
@@ -96,7 +96,7 @@ Note: Camlistore can fail to build inside this container (some of the asm bits a
 
     # Building the container -- skip this if you want to download a pre-built version
     mkdir camlistore && cd camlistore
-    curl Dockerfile.camlistore > Dockerfile.camlistore
+    curl https://raw.githubusercontent.com/davidk/arm-storage/master/Dockerfiles/camlistore/Dockerfile > Dockerfile
     docker build -t camlistore .
    
     # Running camlistore, on port 3179 (this pulls a pre-built version from Docker hub) 
