@@ -83,11 +83,12 @@ Minio doesn't offer an ARM docker container (they do offer a prebuilt binary), b
     docker run -d -p 0.0.0.0:9000:9000 \
     --name minio-instance \
     -v /media/disk/minio-storage:/export \
-    -v $HOME/.config/minio/config.json:/root/.minio/config.json \
+    -v $HOME/.config/minio/:/root/.minio/ \
     -v $HOME/.config/lego/certificates/$HOSTNAME.key:/root/.minio/certs/private.key \
     -v $HOME/.config/lego/certificates/$HOSTNAME.crt:/root/.minio/certs/public.crt \
     --restart unless-stopped \
     keyglitch/minio-arm server /export
+
 
 ### Installing Camlistore
 
