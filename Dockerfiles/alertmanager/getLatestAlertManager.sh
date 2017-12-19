@@ -1,6 +1,6 @@
 #!/bin/bash
-# Get the latest alertmanager release and repack it into a Docker container
-# Used for distributions/arches that alertmanager doesn't provide a container for.
+# Get the latest alertmanager release and repack it into a Dockerfile
+# Used for distributions/arches that alertmanager doesn't provide a Dockerfile for.
 #
 # Utilites Required
 # - jq
