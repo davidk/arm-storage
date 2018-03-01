@@ -32,11 +32,11 @@
 # renew \
 # --days=60
 
-FROM resin/armhf-alpine:3.4
+FROM resin/armhf-alpine:latest
 
 ENV GOPATH /go
 
-RUN apk update && apk add ca-certificates go git && \
+RUN apk update && apk add ca-certificates go git musl-dev && \
     rm -rf /var/cache/apk/* && \
     go get -u github.com/xenolf/lego && \
     cd /go/src/github.com/xenolf/lego && \
