@@ -1,4 +1,4 @@
-# Camlistore in a container (ARMified)
+# Perkeep in a container (ARMified)
 #
 #  docker run -d -p 0.0.0.0:3179:3179 \
 #    --name perkeep \
@@ -10,7 +10,6 @@
 #    keyglitch/perkeep-arm
 
 FROM resin/armhf-alpine:edge
-
 ENV GOPATH /go
 ENV PATH $PATH:$GOPATH/bin
 ENV CGO_ENABLED 0
@@ -18,7 +17,7 @@ ENV CGO_ENABLED 0
 WORKDIR /go/src/github.com/perkeep/
 
 RUN  apk add --no-cache ca-certificates && \
-     apk add --no-cache --virtual .build-deps git go musl-dev && \
+     apk add --no-cache --virtual .build-deps git go1.10 musl-dev && \
      git clone https://github.com/perkeep/perkeep && \
      cd /go/src/github.com/perkeep/perkeep && \
      go run make.go -arch arm && \
@@ -33,3 +32,4 @@ EXPOSE 80 443 3179 8080
 # when upstream changes the naming this needs to be updated.
 
 CMD $GOPATH/bin/camlistored
+
