@@ -14,7 +14,7 @@ LATEST_RELEASE_URL="${RELEASE_LIST_URL}/latest"
 
 if [[ $# -lt 3 ]]; then
 
-  echo "usage: $0 [ windows | openbsd | netbsd | linux | freebsd | darwin dragonfly ] [ armv5 | armv6 | armv7 ] [ latest | tag ] [ external-url ]"
+  echo "usage: $0 [ windows | openbsd | netbsd | linux | freebsd | darwin | dragonfly ] [ armv5 | armv6 | armv7 ] [ latest | tag ] [ external-url ]"
   echo
   echo "example (latest, for armv7): $0 linux armv7 latest example.com"
   echo "example (tagged, version v0.7.0 for armv5): $0 linux armv5 v0.7.0 example.com"
