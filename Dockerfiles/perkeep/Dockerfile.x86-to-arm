@@ -25,11 +25,8 @@ RUN  apk add --no-cache ca-certificates && \
 FROM alpine:edge
 WORKDIR /usr/bin
 
-COPY --from=0 /go/bin/linux_arm/camlistored .
+COPY --from=0 /go/bin/linux_arm/perkeepd .
 
 EXPOSE 80 443 3179 8080
 
-# 2018-03-01: perkeep is still building its binary as camlistored,
-# when upstream changes the naming this needs to be updated.
-
-CMD [ "/usr/bin/camlistored" ]
+CMD [ "/usr/bin/perkeepd" ]
