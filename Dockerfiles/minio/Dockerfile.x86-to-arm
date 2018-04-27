@@ -1,0 +1,22 @@
+# ARMified Minio in a container
+
+FROM golang:alpine
+
+ENV GOPATH /go
+ENV GOARCH arm
+ENV PATH $PATH:$GOPATH/bin
+ENV CGO_ENABLED 0
+
+WORKDIR /go
+
+RUN  apk add --no-cache ca-certificates && \
+     apk add --no-cache git go musl-dev && \
+     go get github.com/minio/minio && \
+     rm -rf /go/src/
+
+FROM alpine:edge
+
+WORKDIR /usr/bin
+COPY --from=0 /go/bin/minio .
+EXPOSE 9000
+ENTRYPOINT [ "/usr/bin/minio" ]
