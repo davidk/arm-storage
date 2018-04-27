@@ -11,26 +11,21 @@
 
 FROM golang:alpine
 ENV GOPATH /go
-ENV GOARCH arm
 ENV PATH $PATH:$GOPATH/bin
 ENV CGO_ENABLED 0
 
-WORKDIR /go/src/github.com/perkeep/
+WORKDIR /go/src
 
 RUN  apk add --no-cache ca-certificates && \
      apk add --no-cache --virtual .build-deps git go musl-dev && \
-     git clone https://github.com/perkeep/perkeep && \
-     cd /go/src/github.com/perkeep/perkeep && \
-     go run make.go -arch arm && \
-     mkdir -p /go/bin && \
-     cp /go/src/github.com/perkeep/perkeep/bin/* /go/bin/ && \
-     rm -rf /go/src/ && \
-     apk del .build-deps
+     git clone https://github.com/perkeep/perkeep ./perkeep.org && \
+     cd /go/src/perkeep.org/ && \
+     go run make.go -arch arm
 
 FROM alpine:edge
 WORKDIR /usr/bin
 
-COPY --from=0 /go/bin/camlistored .
+COPY --from=0 /go/bin/linux_arm/camlistored .
 
 EXPOSE 80 443 3179 8080
 
