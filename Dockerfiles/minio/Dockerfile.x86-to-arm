@@ -17,6 +17,6 @@ RUN  apk add --no-cache ca-certificates && \
 FROM alpine:edge
 
 WORKDIR /usr/bin
-COPY --from=0 /go/bin/minio .
+COPY --from=0 /go/bin/linux_arm/minio .
 EXPOSE 9000
 ENTRYPOINT [ "/usr/bin/minio" ]
