@@ -1,0 +1,40 @@
+# Perkeep in a container (ARMified)
+#
+#  docker run -d -p 0.0.0.0:3179:3179 \
+#    --name perkeep \
+#    -v $HOME/.config/lego/certificates/$HOSTNAME.key:/root/.config/perkeep/certs/private.key \
+#    -v $HOME/.config/lego/certificates/$HOSTNAME.crt:/root/.config/perkeep/certs/public.crt \
+#    -v $HOME/.config/camlistore:/root/.config/camlistore/ \
+#    -v /media/disk/camlistore_files:/root/var/camlistore \
+#    --restart unless-stopped \
+#    keyglitch/perkeep-arm
+
+FROM golang:alpine
+ENV GOPATH /go
+ENV GOARCH arm
+ENV PATH $PATH:$GOPATH/bin
+ENV CGO_ENABLED 0
+
+WORKDIR /go/src/github.com/perkeep/
+
+RUN  apk add --no-cache ca-certificates && \
+     apk add --no-cache --virtual .build-deps git go musl-dev && \
+     git clone https://github.com/perkeep/perkeep && \
+     cd /go/src/github.com/perkeep/perkeep && \
+     go run make.go -arch arm && \
+     mkdir -p /go/bin && \
+     cp /go/src/github.com/perkeep/perkeep/bin/* /go/bin/ && \
+     rm -rf /go/src/ && \
+     apk del .build-deps
+
+FROM alpine:edge
+WORKDIR /usr/bin
+
+COPY --from=0 /go/bin/camlistored .
+
+EXPOSE 80 443 3179 8080
+
+# 2018-03-01: perkeep is still building its binary as camlistored,
+# when upstream changes the naming this needs to be updated.
+
+CMD [ "/usr/bin/camlistored" ]
