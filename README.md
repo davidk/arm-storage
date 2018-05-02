@@ -5,7 +5,7 @@ If you are interested in building out your own ARM storage kit, [documentation i
 
 # Pre-built Container Images
 
-[Images for Dockerfile'd software in this repository can be found here](https://hub.docker.com/r/keyglitch/arm-storage/tags/). These are automatically run by Docker's Cloud service (and do not appear tagged as 'automated build').
+[Images for Dockerfile'd software in this repository can be found here](https://hub.docker.com/r/keyglitch/arm-storage/tags/). These are automatically built on push (to this repo) by Docker's Cloud service (and do not appear tagged as 'automated build').
 
 Run something like this to get the latest image (in this instance, the latest minio):
 
