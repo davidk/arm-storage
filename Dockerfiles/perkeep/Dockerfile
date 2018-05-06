@@ -1,13 +1,17 @@
 # Perkeep in a container (ARMified)
 #
-#  docker run -d -p 0.0.0.0:3179:3179 \
-#    --name perkeep \
-#    -v $HOME/.config/lego/certificates/$HOSTNAME.key:/root/.config/perkeep/certs/private.key \
-#    -v $HOME/.config/lego/certificates/$HOSTNAME.crt:/root/.config/perkeep/certs/public.crt \
-#    -v $HOME/.config/camlistore:/root/.config/camlistore/ \
-#    -v /media/disk/camlistore_files:/root/var/camlistore \
-#    --restart unless-stopped \
-#    keyglitch/perkeep-arm
+# docker run -d -p 0.0.0.0:3179:3179 \
+#   --name perkeep \
+#   -v $HOME/.config/lego/certificates/$HOSTNAME.key:/root/.config/perkeep/certs/private.key \
+#   -v $HOME/.config/lego/certificates/$HOSTNAME.crt:/root/.config/perkeep/certs/public.crt \
+#   -v $HOME/.config/camlistore:/root/.config/perkeep/ \
+#   -v /media/disk/camlistore_files:/root/var/perkeep \
+#   --restart unless-stopped \
+#   keyglitch/arm-storage:perkeep-latest
+# 
+# If you need to run perkeep in recovery, change this line to this:
+# 	keyglitch/arm-storage:perkeep-latest /usr/bin/perkeepd -recovery=1
+#
 
 FROM resin/armhf-alpine:edge
 ENV GOPATH /go
