@@ -1,4 +1,6 @@
-# ARMified Minio in a container
+# Minio Dockerfile to generate ARM binaries on x86 build systems
+#
+# To run this, see the other Dockerfile
 
 FROM golang:alpine
 

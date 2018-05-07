@@ -5,7 +5,7 @@
 # Getting a certificate using the DNS challenge
 #
 # docker run --rm \
-# -v $HOME/.config/lego:/.lego \
+# -v $HOME/.config/lego:/usr/bin/.lego \
 # -e CLOUDFLARE_EMAIL="REPLACE_ME@example.com" \
 # -e CLOUDFLARE_API_KEY="REPLACE_ME" \
 # keyglitch/arm-storage:lego-latest \
@@ -20,7 +20,7 @@
 # Renewing a certificate
 #
 # docker run --rm \
-# -v $HOME/.config/lego:/.lego \
+# -v $HOME/.config/lego:/usr/bin/.lego \
 # -e CLOUDFLARE_EMAIL="REPLACE_ME@example.com" \
 # -e CLOUDFLARE_API_KEY="REPLACE_ME" \
 # keyglitch/arm-storage:lego-latest \

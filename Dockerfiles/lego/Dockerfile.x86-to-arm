@@ -1,6 +1,6 @@
 # Lego Dockerfile to generate ARM binaries on x86 build systems
 #
-# To run this as a container, see the Dockerfile
+# To run this as a container, see the other Dockerfile
 
 FROM golang:alpine
 
