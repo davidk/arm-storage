@@ -1,36 +1,6 @@
-# Lets Encrypt Go (Lego) in a container (ARMified)
+# Lego Dockerfile to generate ARM binaries on x86 build systems
 #
-# Example invocations:
-#
-# Getting a certificate using the DNS challenge
-#
-# docker run --rm \
-# -v $HOME/.config/lego:/.lego \
-# -e CLOUDFLARE_EMAIL="REPLACE_ME@example.com" \
-# -e CLOUDFLARE_API_KEY="REPLACE_ME" \
-# keyglitch/lego-arm \
-# --email="REPLACE_ME@example.com" \
-# --domains="REPLACE_ME.example.com" \
-# --dns="cloudflare" \
-# --dns-resolvers="8.8.8.8" \
-# --dns-resolvers="8.8.4.4" \
-# -a \
-# run \
-#
-# Renewing a certificate
-#
-# docker run --rm \
-# -v $HOME/.config/lego:/.lego \
-# -e CLOUDFLARE_EMAIL="REPLACE_ME@example.com" \
-# -e CLOUDFLARE_API_KEY="REPLACE_ME" \
-# keyglitch/lego-arm \
-# --email="REPLACE_ME@example.com" \
-# --domains="REPLACE_ME.example.com" \
-# --dns="cloudflare" \
-# --dns-resolvers="8.8.8.8" \
-# --dns-resolvers="8.8.4.4" \
-# renew \
-# --days=60
+# To run this as a container, see the Dockerfile
 
 FROM golang:alpine
 
@@ -50,4 +20,5 @@ RUN apk update && apk add --no-cache ca-certificates go git musl-dev && \
 FROM alpine:edge
 WORKDIR /usr/bin
 COPY --from=0 /usr/bin/lego .
+RUN apk add --no-cache ca-certificates
 ENTRYPOINT [ "/usr/bin/lego" ]

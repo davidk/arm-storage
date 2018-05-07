@@ -8,7 +8,7 @@
 # -v $HOME/.config/lego:/.lego \
 # -e CLOUDFLARE_EMAIL="REPLACE_ME@example.com" \
 # -e CLOUDFLARE_API_KEY="REPLACE_ME" \
-# keyglitch/lego-arm \
+# keyglitch/arm-storage:lego-latest \
 # --email="REPLACE_ME@example.com" \
 # --domains="REPLACE_ME.example.com" \
 # --dns="cloudflare" \
@@ -23,7 +23,7 @@
 # -v $HOME/.config/lego:/.lego \
 # -e CLOUDFLARE_EMAIL="REPLACE_ME@example.com" \
 # -e CLOUDFLARE_API_KEY="REPLACE_ME" \
-# keyglitch/lego-arm \
+# keyglitch/arm-storage:lego-latest \
 # --email="REPLACE_ME@example.com" \
 # --domains="REPLACE_ME.example.com" \
 # --dns="cloudflare" \
