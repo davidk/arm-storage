@@ -1,7 +1,23 @@
+# ARM Storage: Use + Objective
 
-# Documentation
+This system is essentially a bunch of drives rubber-banded together to form a local S3 clone. A bunch
+of things are possible, but for now, this is mostly useful for doing [backups with Restic](https://docs.minio.io/docs/restic-with-minio).
 
-If you are interested in building out your own ARM storage kit, [documentation is available in the wiki - click me to head over there](https://github.com/davidk/arm-storage/wiki).
+The goals of this system are to be reasonably performant while being sized for something that sits underneath a desk. 
+Noise is also important too. Not everyone has the ability (or desire) to procure/provision/manage several Us (or more) worth of metal at home.
+
+# Getting Started Documentation
+
+If you are interested in building this out, [documentation is available in the wiki](https://github.com/davidk/arm-storage/wiki).
+
+# Current Applications
+
+* Minio (storage service with redundant capabilities) - "Minio is a high performance distributed object storage server, designed for
+large-scale private cloud infrastructure." - [https://www.minio.io/](https://www.minio.io/)
+
+* Lego (provides SSL certificates to all services) - "Let's Encrypt client and ACME library written in Go " - [https://github.com/xenolf/lego](https://github.com/xenolf/lego)
+
+* Perkeep - "...your personal storage system for life: a way of storing, syncing, sharing, modelling and backing up content." - [https://github.com/perkeep/perkeep](https://github.com/perkeep/perkeep)
 
 # Pre-built Container Images
 
