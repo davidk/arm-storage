@@ -4,7 +4,7 @@ This system is essentially a bunch of drives rubber-banded together to form a lo
 of things are possible, but for now, this is mostly useful for doing [backups with Restic](https://docs.minio.io/docs/restic-with-minio).
 
 The goals of this system are to be reasonably performant while being sized for something that sits underneath a desk. 
-Noise is also important too. Not everyone has the ability (or desire) to procure/provision/manage several Us (or more) worth of metal at home.
+Noise is also important too.
 
 # Getting Started Documentation
 
