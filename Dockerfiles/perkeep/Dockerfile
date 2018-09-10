@@ -2,13 +2,14 @@
 #
 # docker run -d -p 0.0.0.0:3179:3179 \
 #   --name perkeep \
-#   -v $HOME/.config/lego/certificates/$HOSTNAME.key:/root/.config/perkeep/certs/private.key \
-#   -v $HOME/.config/lego/certificates/$HOSTNAME.crt:/root/.config/perkeep/certs/public.crt \
-#   -v $HOME/.config/perkeep:/root/.config/perkeep/ \
-#   -v /media/disk/camlistore_files:/root/var/perkeep \
+#   -v $HOME/.config/lego/certificates/$HOSTNAME.key:/home/perkeep/.config/perkeep/certs/private.key \
+#   -v $HOME/.config/lego/certificates/$HOSTNAME.crt:/home/perkeep/.config/perkeep/certs/public.crt \
+#   -v $HOME/.config/perkeep:/home/perkeep/.config/perkeep/ \
+#   -v /media/disk/camlistore_files:/home/perkeep/var/perkeep \
 #   --restart unless-stopped \
 #   keyglitch/arm-storage:perkeep-latest
 # 
+# *** Recovery mode ***
 # If you need to run perkeep in recovery, change this line to this:
 # 	keyglitch/arm-storage:perkeep-latest /usr/bin/perkeepd -recovery=1
 #
@@ -29,10 +30,14 @@ RUN  apk add --no-cache ca-certificates && \
      rm -rf /go/src/ && \
      apk del .build-deps
 
+RUN groupadd perkeep \
+  && useradd -g perkeep --create-home --home-dir /home/perkeep perkeep \
+  && mkdir -p /perkeep \
+  && chown perkeep:perkeep /perkeep
+
+COPY --from=0 /go/bin/linux_arm/perkeepd .
+
+USER perkeep
 EXPOSE 80 443 3179 8080
 
-# 2018-03-01: perkeep is still building its binary as camlistored,
-# when upstream changes the naming this needs to be updated.
-
 CMD [ "/usr/bin/perkeepd" ]
-
