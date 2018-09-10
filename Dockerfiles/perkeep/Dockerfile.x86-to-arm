@@ -18,8 +18,14 @@ RUN  apk add --no-cache ca-certificates && \
 FROM alpine:edge
 WORKDIR /usr/bin
 
+RUN groupadd perkeep \
+  && useradd -g perkeep --create-home --home-dir /home/perkeep perkeep \
+  && mkdir -p /perkeep \
+  && chown perkeep:perkeep /perkeep
+
 COPY --from=0 /go/bin/linux_arm/perkeepd .
 
+USER perkeep
 EXPOSE 80 443 3179 8080
 
 CMD [ "/usr/bin/perkeepd" ]
