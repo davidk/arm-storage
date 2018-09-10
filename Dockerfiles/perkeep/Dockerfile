@@ -30,10 +30,10 @@ RUN  apk add --no-cache ca-certificates && \
      rm -rf /go/src/ && \
      apk del .build-deps
 
-RUN groupadd perkeep \
-  && useradd -g perkeep --create-home --home-dir /home/perkeep perkeep \
-  && mkdir -p /perkeep \
-  && chown perkeep:perkeep /perkeep
+RUN addgroup -g 1000 -S perkeep && \
+    adduser -u 1000 -S perkeep -G perkeep && \
+    mkdir -p /home/perkeep && \
+    chown perkeep:perkeep /home/perkeep 
 
 COPY --from=0 /go/bin/linux_arm/perkeepd .
 
