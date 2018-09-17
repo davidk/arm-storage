@@ -2,7 +2,7 @@
 #
 # To run this as a container, see the other Dockerfile
 
-FROM golang:1.10.4-alpine
+FROM golang:1.11-alpine
 ENV GOPATH /go
 ENV PATH $PATH:$GOPATH/bin
 ENV CGO_ENABLED 0
