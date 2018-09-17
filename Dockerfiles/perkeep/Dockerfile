@@ -22,7 +22,7 @@ ENV CGO_ENABLED 0
 WORKDIR /go/src
 
 RUN  apk add --no-cache ca-certificates && \
-     apk add --no-cache --virtual .build-deps git go1.10 musl-dev && \
+     apk add --no-cache --virtual .build-deps git go musl-dev && \
      git clone https://github.com/perkeep/perkeep ./perkeep.org && \
      cd /go/src/perkeep.org/ && \
      go run make.go && \
