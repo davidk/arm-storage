@@ -25,11 +25,11 @@ large-scale private cloud infrastructure." - [https://www.minio.io/](https://www
 
 The currently available images are:
 
-    docker pull keyglitch/arm-storage:minio-latest
+    docker pull keyglitch/arm-storage:minio
 
-    docker pull keyglitch/arm-storage:lego-latest
+    docker pull keyglitch/arm-storage:lego
 
-    docker pull keyglitch/arm-storage:perkeep-latest
+    docker pull keyglitch/arm-storage:perkeep
 
 # Dockerfiles
 
