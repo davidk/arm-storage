@@ -1,5 +1,3 @@
-# ARM Storage: Use + Objective
-
 This system is essentially a bunch of drives rubber-banded together to form a local S3 clone. A bunch
 of things are possible, but for now, this is mostly useful for doing [backups with Restic](https://docs.minio.io/docs/restic-with-minio).
 
