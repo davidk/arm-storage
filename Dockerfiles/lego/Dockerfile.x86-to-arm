@@ -11,9 +11,10 @@ ENV CGO_ENABLED 0
 RUN apk update && apk add --no-cache ca-certificates go git musl-dev && \
     rm -rf /var/cache/apk/* && \
     go get -v -u github.com/xenolf/lego/cmd/lego && \
-    mv /go/bin/lego /usr/bin/lego && \
+    mv /go/bin/linux_arm/lego /usr/bin/lego && \
     apk del go git && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* && \
+    rm -rf /go
 
 FROM alpine:edge
 WORKDIR /usr/bin
